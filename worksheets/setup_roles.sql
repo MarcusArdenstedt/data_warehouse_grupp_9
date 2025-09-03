@@ -31,6 +31,9 @@ GRANT
     IN SCHEMA job_db.staging
     TO ROLE job_loader;
 
+GRANT CREATE TABLE ON SCHEMA job_db.staging
+TO ROLE job_loader;
+
 
 SHOW GRANTS TO ROLE job_loader;
 
