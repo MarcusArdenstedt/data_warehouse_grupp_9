@@ -31,4 +31,17 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   dbt_job_ads:
-    
+    +materialized: view
+
+    src:
+      +materialized: ephemeral
+      +schema: staging
+
+    dim:
+      +schema: warehouse
+
+    fct:
+      +schema: warehouse
+
+    mart:
+      +schema: marts
