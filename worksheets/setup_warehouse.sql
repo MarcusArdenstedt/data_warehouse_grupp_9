@@ -16,4 +16,12 @@ COMMENT ="Warehouse for HR job analytics.";
 
  CREATE SCHEMA IF NOT EXISTS job_db.staging;
 
+-- create schema warehouse and marts
 
+USE ROLE SYSADMIN;
+
+
+
+CREATE SCHEMA IF NOT EXISTS job_db.warehouse;
+
+CREATE SCHEMA IF NOT EXISTS job_db.marts;
