@@ -24,6 +24,11 @@ GRANT CREATE TABLE ON SCHEMA job_db.staging TO ROLE job_loader;
 SHOW ROLES;
 
 --dbt user
+
+-- granted role to warehouse
+GRANT USAGE ON WAREHOUSE job_api_group_9 TO ROLE job_transformer;
+
+
 GRANT ROLE job_transformer TO USER dbt_user;
 GRANT USAGE ON DATABASE job_db TO ROLE job_transformer;
 GRANT USAGE ON SCHEMA job_db.warehouse TO ROLE job_transformer;
@@ -65,9 +70,12 @@ USE ROLE job_transformer;
 USE WAREHOUSE job_api_group_9;
 SELECT * FROM job_db.staging.job_advertisements LIMIT 10;
 
+SELECT current_warehouse(), current_database();
 
----extra
-GRANT ROLE job_transformer TO USER john;
+USE WAREHOUSE job_api_group_9;
 
+
+
+ 
 
 
