@@ -1,0 +1,7 @@
+sources:
+  - name: job_ads
+    database: job_db
+    schema: staging
+    tables:
+      - name: stg_job_ads
+        identifier: job_advertisements

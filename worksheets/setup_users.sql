@@ -14,9 +14,12 @@ SELECT current_role();
 
 USE ROLE USERADMIN;
 
+DROP USER dbt_user;
+
 CREATE USER IF NOT EXISTS dbt_user
     PASSWORD = "dbt_transform"
     DEFAULT_WAREHOUSE = job_api_group_9
+    LOGIN_NAME = "dbt_user"
     DEFAULT_ROLE = "job_transformer"
     DEFAULT_NAMESPACE = "job_db.warehouse"
     MUST_CHANGE_PASSWORD = TRUE;
