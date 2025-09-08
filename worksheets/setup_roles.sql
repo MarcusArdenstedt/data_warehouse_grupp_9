@@ -34,6 +34,7 @@ GRANT CREATE VIEW ON SCHEMA job_db.warehouse TO ROLE job_transformer;
 GRANT CREATE TABLE ON SCHEMA job_db.marts TO ROLE job_transformer;
 GRANT CREATE VIEW ON SCHEMA job_db.marts TO ROLE job_transformer;
 
+SHOW GRANTS ON ROLE job_transformer;
 
 
 
