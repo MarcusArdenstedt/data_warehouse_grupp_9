@@ -74,7 +74,9 @@ SELECT current_warehouse(), current_database();
 
 USE WAREHOUSE job_api_group_9;
 
+USE ROLE job_loader;
 
+SELECT current_warehouse(), current_database(), current_schema();
 
  
 
