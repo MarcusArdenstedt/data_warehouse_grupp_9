@@ -5,3 +5,9 @@ sources:
     tables:
       - name: stg_job_ads
         identifier: job_advertisements
+      - name: stg_job_ads_must_have_skills
+        identifier: job_advertisements__must_have__skills
+      - name: stg_job_ads_must_have_work_exp
+        identifier: job_advertisements__must_have__work_experiences
+      - name: stg_job_ads_must_have_education_level
+        identifier: job_advertisements__must_have__education_level

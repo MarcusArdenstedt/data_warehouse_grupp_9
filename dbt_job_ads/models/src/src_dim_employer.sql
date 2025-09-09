@@ -2,6 +2,7 @@
 WITH src_employment AS (SELECT * FROM {{ source('job_ads', 'stg_job_ads') }})
 
 SELECT 
+    id,
     EMPLOYER__NAME AS employer_name,
     EMPLOYER__WORKPLACE AS employer_workplace,
     EMPLOYER__ORGANIZATION_NUMBER AS employer_org,
