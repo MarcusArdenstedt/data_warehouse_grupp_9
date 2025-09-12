@@ -21,7 +21,7 @@ SELECT
     jd.must_have_work_exp
 
 FROM fct_job_ads as fja
-LEFT JOIN dim_occupation as o on fja.occupation_key = o.occupation_key
+LEFT JOIN dim_occupation as o on fja.occupation_f_key = o.occupation_key
 LEFT JOIN dim_employer as e on fja.employer_f_key = e.employer_key
 LEFT JOIN dim_job_details as jd on fja.job_details_f_key = jd.job_details_key
 where occupation_field = 'Säkerhet och bevakning'
