@@ -4,7 +4,7 @@ import snowflake.connector
 import pandas as pd 
 
  
-def query_job_listings(query='SELECT * FROM mart_data_it'):
+def query_job_listings(occupational_field):
 
     load_dotenv()
 
@@ -17,7 +17,12 @@ def query_job_listings(query='SELECT * FROM mart_data_it'):
         schema=os.getenv("SNOWFLAKE_SCHEMA"),
         role=os.getenv("SNOWFLAKE_ROLE"),
     ) as conn:
-
+        if occupational_field == "Data/IT":
+            query='SELECT * FROM mart_data_it'
+        elif occupational_field == "Säkerhet och bevakning":
+            query='SELECT * FROM mart_safety'
+        else:
+            query='SELECT * FROM mart_social_work'
         # Execute the query
         df = pd.read_sql(query, conn)
         
