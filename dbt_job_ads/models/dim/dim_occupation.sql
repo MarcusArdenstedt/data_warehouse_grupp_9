@@ -11,7 +11,7 @@ FROM
 WHERE occupation ='Säkerhetsingenjör' #} 
 
 
-with src_occupation as (select * from {{ ref('src_dim_occupation') }})
+with dim_occupation as (select * from {{ ref('src_dim_occupation') }})
 
 select
     {{ dbt_utils.generate_surrogate_key(['occupation']) }} as occupation_key,
