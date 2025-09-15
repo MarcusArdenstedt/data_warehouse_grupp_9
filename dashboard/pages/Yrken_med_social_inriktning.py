@@ -31,6 +31,28 @@ def num_of_vacancies(df):
     fig.update_xaxes(title="Antal lediga tjänster")
     fig.update_layout(showlegend=False)
     return fig
+    
+def must_have_skills(df, column):
+    column_titles = {
+        "MUST_HAVE_WORK_EXP": "Arbetslivserfarenhet",
+        "MUST_HAVE_EDU_LEVEL": "Utbildningsnivå",
+        "MUST_HAVE_SKILLS": "Efterfrågade skills"
+    }
+
+    top_values = (
+        df.groupby(column)
+          .size()
+          .reset_index(name="Antal") 
+          .sort_values("Antal", ascending=False)
+          .head(10)
+    )
+    fig = px.pie(
+        top_values,
+        values="Antal",                 
+        names=column,                   
+        title=f"Topp 10 {column_titles.get(column, column)}"
+    )
+    return fig
 
 def layout():
 
@@ -54,6 +76,8 @@ def layout():
     ##choropleth
 
     #skill graph
+    fig_pie = must_have_skills(df, "MUST_HAVE_EDU_LEVEL")  
+    st.plotly_chart(fig_pie)
 
 if __name__ == "__main__":
     st.set_page_config(page_title="Data Analysis Dashboard")
