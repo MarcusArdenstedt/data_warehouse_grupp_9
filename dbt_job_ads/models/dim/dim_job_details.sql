@@ -1,9 +1,7 @@
-
-
 WITH dim_job_details AS (SELECT * FROM {{ ref('src_job_ads') }})
 
 SELECT 
-    {{ dbt_utils.generate_surrogate_key(['id']) }} as job_details_key,
+    {{ dbt_utils.generate_surrogate_key(['id', 'headline','must_have_skills']) }} as job_details_key,
     headline,
     "description", 
     description_formatted,
