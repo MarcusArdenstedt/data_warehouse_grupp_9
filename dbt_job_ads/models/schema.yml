@@ -1,0 +1,60 @@
+models:
+  - name: fct_job_ads
+    columns: 
+      - name: employer_f_key
+        data_tests:
+          - relationships:
+              to: ref('dim_employment')
+              field: employer_key
+
+      - name: job_details_f_key
+        data_tests:
+          - relationships:
+              to: ref('dim_job_details')
+              field: job_details_key
+
+      - name: occupation_f_key
+        data_tests:
+          - relationships:
+              to: ref('dim_occupation')
+              field: occupation_key
+
+      - name: number_of_vacancies
+        data_tests:
+          - not_null
+
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: number
+      - name: application_deadline
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+
+      - name: publication_date
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+
+      - name: last_publication_date
+        data_tests:
+          - dbt_expectations.expect_column_values_to_be_of_type:
+              column_type: date
+  - name: dim_employment
+    columns:
+      - name: employer_key
+        data_tests:
+          - not_null
+          - unique
+      
+  - name: dim_job_details
+    columns:
+      - name: job_details_key
+        data_tests:
+          - not_null
+          - unique
+  - name: dim_occupation
+    columns:
+      - name: occupation_key
+        data_tests:
+          - not_null
+          - unique
