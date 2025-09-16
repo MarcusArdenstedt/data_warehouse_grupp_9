@@ -1,6 +1,6 @@
 import plotly.express as px
+import streamlit as st
 from backend import connect_data_warehouse
-
 
 def must_have_skills(df, column):
     column_titles = {
@@ -9,13 +9,19 @@ def must_have_skills(df, column):
         "MUST_HAVE_SKILLS": "Efterfrågade skills"
     }
 
+    total = len(df)
+
+    df_excluded = df[df[column] != "ej specificerad"]
+    excluded_count = total - len(df_excluded)
+
     top_values = (
-        df.groupby(column)
+        df_excluded.groupby(column)
           .size()
           .reset_index(name="Antal") 
           .sort_values("Antal", ascending=False)
           .head(10)
     )
+
     fig = px.pie(
         top_values,
         values="Antal",                 
@@ -23,4 +29,9 @@ def must_have_skills(df, column):
         title=f"Topp 10 {column_titles.get(column, column)}"
     )
 
-    return fig
+    if total > 0:
+        excluded_pct = round(excluded_count / total * 100, 1)
+    else:
+        excluded_pct = 0
+
+    return fig, excluded_pct
