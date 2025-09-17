@@ -1,6 +1,4 @@
 import plotly.express as px
-import streamlit as st
-from backend import connect_data_warehouse
 
 def must_have_skills(df, column):
     column_titles = {

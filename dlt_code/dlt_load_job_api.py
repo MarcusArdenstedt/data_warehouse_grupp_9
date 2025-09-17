@@ -10,7 +10,7 @@ def _get_ads(url_for_search, params):
     response.raise_for_status()  # check for http errors
     return json.loads(response.content.decode("utf8"))
 
-@dlt.resource(write_disposition="append")
+@dlt.resource(write_disposition="replace")
 def jobsearch_resource(params):
     """
     params should include at least:
@@ -21,7 +21,7 @@ def jobsearch_resource(params):
     url_for_search = f"{url}/search"
     limit = params.get("limit", 100)
     offset = 0
-
+    
     while True:
         # build this page’s params
         page_params = dict(params, offset=offset)
@@ -45,7 +45,7 @@ def jobsearch_resource(params):
 
 def run_pipeline(query, table_name, occupation_fields):
     pipeline = dlt.pipeline(
-        pipeline_name="jobads_demo",
+        pipeline_name="job_ads_demo",
         destination="snowflake",
         dataset_name="staging",
     )
@@ -62,7 +62,8 @@ def run_pipeline(query, table_name, occupation_fields):
 if __name__ == "__main__":
     working_directory = Path(__file__).parent
     os.chdir(working_directory)
-    #print(working_directory)
+    # print(working_directory)
+    
     query = ""
     table_name = "job_advertisements"
 

@@ -36,3 +36,4 @@ CREATE USER IF NOT EXISTS streamlit_user
     DEFAULT_ROLE = "job_presenter"
     DEFAULT_NAMESPACE = "job_db.marts"
     MUST_CHANGE_PASSWORD = TRUE;
+

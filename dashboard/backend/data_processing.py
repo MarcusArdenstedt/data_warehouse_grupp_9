@@ -2,6 +2,8 @@ import os
 from dotenv import load_dotenv
 import snowflake.connector
 import pandas as pd 
+from pathlib import Path
+import json
 
  
 def query_job_listings(occupational_field):
@@ -27,3 +29,15 @@ def query_job_listings(occupational_field):
         df = pd.read_sql(query, conn)
         
         return df
+    
+    
+def read_json_data():
+    working_directory = Path(__file__).parent
+
+    path_geojson = working_directory / "geojson_data"
+
+    with open(path_geojson / "swedish_regions.geojson", "r", encoding= "utf-8") as file:
+        json_data = json.load(file)
+        
+    return json_data
+

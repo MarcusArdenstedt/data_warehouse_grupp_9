@@ -51,6 +51,8 @@ GRANT SELECT ON FUTURE VIEWS IN SCHEMA job_db.warehouse TO ROLE job_transformer;
 
 -- test on the new role
 USE ROLE job_transformer;
+SELECT current_warehouse();
+SHOW SCHEMAS;
 USE WAREHOUSE job_api_group_9;
 SELECT * FROM job_db.staging.job_advertisements LIMIT 10;
 
@@ -58,9 +60,9 @@ SELECT current_warehouse(), current_database();
 
 USE WAREHOUSE job_api_group_9;
 
-USE ROLE job_loader;
+USE ROLE job_transformer;
 
-SELECT current_warehouse(), current_database(), current_schema();
+SELECT current_warehouse(), current_database(), current_schema(), current_role(), current_schema();
 
 -- grant role to marts
 GRANT CREATE TABLE ON SCHEMA job_db.marts TO ROLE job_transformer;

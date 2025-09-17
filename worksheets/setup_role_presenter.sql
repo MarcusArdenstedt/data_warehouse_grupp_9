@@ -22,4 +22,4 @@ GRANT ROLE job_presenter TO USER streamlit_user;
 USE ROLE job_presenter;
 
 SELECT * FROM job_db.marts.mart_data_it
-LIMIT 10
+LIMIT 10;
