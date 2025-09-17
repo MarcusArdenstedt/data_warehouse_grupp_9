@@ -6,3 +6,14 @@ SELECT * FROM STAGING.JOB_ADVERTISEMENTS__MUST_HAVE__SKILLS;
 --tetsing linkage
 SELECT * FROM STAGING.JOB_ADVERTISEMENTS
 WHERE _dlt_id = 'tphWsKIkutC9Kg';
+
+SHOW SCHEMAS LIKE 'STAGING' IN DATABASE JOB_DB;
+
+USE DATABASE job_db;
+
+USE SCHEMA staging;
+
+SHOW TABLES IN SCHEMA job_db.staging;
+
+SELECT current_user(), current_role(), current_database(), current_schema();
+

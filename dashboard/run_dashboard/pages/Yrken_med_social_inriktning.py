@@ -1,8 +1,9 @@
 import streamlit as st
-from backend.connect_data_warehouse import query_job_listings
-from backend.calculation import num_of_ads, num_of_ads_7_days
+from backend.data_processing import query_job_listings
+from backend.calculation import num_of_ads, num_of_ads_7_days, count_vacancies, count_procent
 from frontend.bar_chart import num_of_vacancies
 from frontend.pie_chart import must_have_skills
+from frontend.map import choroplth_map
 
 
 def layout():
@@ -25,6 +26,20 @@ def layout():
     st.plotly_chart(fig)
 
     ##choropleth
+    st.markdown("### Antal lediga tjänster per region")
+    col_1, col_2, col_3= st.columns(3)
+    with col_1:
+        st.metric(label= "Totala tjänster lediga", value= count_vacancies(df))
+        
+    with col_2:
+        st.metric(label= "Regioner ej Specificerad", value= count_vacancies(data= df, type= "ej specificerad"))
+        
+    with col_3:
+        st.metric(label= "% ej specificerad region", value=count_procent(data= df))
+        
+    fig = choroplth_map(df= df, occupation= "Yrken med social inriktning")
+    
+    st.plotly_chart(fig, use_container_width= True)
 
     #skill graph
     fig_pie = must_have_skills(df, "MUST_HAVE_EDU_LEVEL")  

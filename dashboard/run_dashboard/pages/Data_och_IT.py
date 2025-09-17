@@ -1,9 +1,25 @@
 import streamlit as st
-from backend.calculation import num_of_ads, num_of_ads_7_days
-from backend.connect_data_warehouse import query_job_listings
+from backend.calculation import num_of_ads, num_of_ads_7_days, count_vacancies, count_procent
+from backend.data_processing import query_job_listings
 from frontend.pie_chart import must_have_skills
 from frontend.bar_chart import num_of_vacancies
+from frontend.map import choroplth_map
 
+
+
+# def count_vacancies(data, type = None):
+
+#         if type == 'ej specificerad':
+#             return data[data["WORKPLACE_REGION"] == 'ej specificerad']["NUMBER_OF_VACANCIES"].sum()
+#         else:
+#             return data["NUMBER_OF_VACANCIES"].sum()
+    
+# def count_procent(data):
+    
+#     total = count_vacancies(data= data)
+#     part = count_vacancies(data= data, type= "ej specificerad")
+#     return f"{round((part / total) * 100,2)}%" 
+    
 
 def layout():
     #page df
@@ -25,6 +41,18 @@ def layout():
     st.plotly_chart(fig)
 
     ##choropleth
+    st.markdown("### Antal lediga tjänster per region")
+    col_1, col_2, col_3= st.columns(3)
+    with col_1:
+        st.metric(label= "Totala tjänster lediga", value= count_vacancies(df))
+        
+    with col_2:
+        st.metric(label= "Regioner ej Specificerad", value= count_vacancies(data= df, type= "ej specificerad"))
+        
+    with col_3:
+        st.metric(label= "% ej specificerad region", value=count_procent(data= df))
+    fig = choroplth_map(df= df, occupation= "Data/IT")
+    st.plotly_chart(fig)
 
     #skill graph
 

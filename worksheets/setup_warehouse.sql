@@ -14,6 +14,7 @@ COMMENT ="Warehouse for HR job analytics.";
 
  CREATE DATABASE IF NOT EXISTS job_db;
 
+
  CREATE SCHEMA IF NOT EXISTS job_db.staging;
 
 -- create schema warehouse and marts

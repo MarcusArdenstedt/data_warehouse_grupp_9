@@ -1,5 +1,5 @@
 import plotly.express as px
-from backend import connect_data_warehouse
+
 
 
 def must_have_skills(df, column):
