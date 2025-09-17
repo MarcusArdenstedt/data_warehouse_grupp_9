@@ -3,11 +3,19 @@ sources:
     database: job_db
     schema: staging
     tables:
-      - name: stg_job_ads
-        identifier: job_advertisements
+      - name: stg_snapshot_job_ads
+        identifier: arbetsformedling_ads
+      - name: stg_stream_job_ads
+        identifier: daily_arbetsformedling_ads
       - name: stg_job_ads_must_have_skills
-        identifier: job_advertisements__must_have__skills
+        identifier: arbetsformedling_ads__must_have__skills
       - name: stg_job_ads_must_have_work_exp
-        identifier: job_advertisements__must_have__work_experiences
+        identifier: arbetsformedling_ads__must_have__work_experiences
       - name: stg_job_ads_must_have_education_level
-        identifier: job_advertisements__must_have__education_level
+        identifier: arbetsformedling_ads__must_have__education_level
+      - name: stg_job_ads_must_have_skills_stream
+        identifier: daily_arbetsformedling_ads__must_have__skills
+      - name: stg_job_ads_must_have_work_exp_stream
+        identifier: DAILY_ARBETSFORMEDLING_ADS__MUST_HAVE__WORK_EXPERIENCES
+      - name: stg_job_ads_must_have_education_level_stream
+        identifier: daily_arbetsformedling_ads__must_have__education_level
