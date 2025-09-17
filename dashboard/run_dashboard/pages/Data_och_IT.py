@@ -56,10 +56,16 @@ def layout():
 
     #skill graph
 
-    fig_pie = must_have_skills(df, "MUST_HAVE_SKILLS")  
-    st.plotly_chart(fig_pie)
+    fig_pie, excluded_pct = must_have_skills(df, "MUST_HAVE_SKILLS")
+    st.plotly_chart(fig_pie)   
 
+    st.markdown(
+    f"<p style='text-align: center; margin-top: -70px;'>"
+    f"Ej specificerad är exkluderad ({excluded_pct}% av totalen)"
+    f"</p>",
+    unsafe_allow_html=True)
 
+    
 if __name__ == "__main__":
     st.set_page_config(page_title="Data Analysis Dashboard")
     layout()
