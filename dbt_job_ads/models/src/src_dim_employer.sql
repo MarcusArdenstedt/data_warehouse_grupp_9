@@ -1,5 +1,5 @@
 
-WITH src_employment AS (SELECT * FROM {{ source('job_ads', 'stg_job_ads') }})
+WITH src_employment AS (SELECT * FROM {{ source('job_ads', 'stg_snapshot_job_ads') }})
 
 SELECT 
     id,

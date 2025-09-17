@@ -16,4 +16,3 @@ FROM
 LEFT JOIN employer AS e ON fja.id = e.id
 LEFT JOIN occupation AS o ON fja.id = o.id
 ORDER BY publication_date DESC
---LEFT JOIN details AS d ON fja.id = d.id
