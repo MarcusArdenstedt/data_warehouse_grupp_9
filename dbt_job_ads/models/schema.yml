@@ -1,61 +1,111 @@
 models:
   - name: fct_job_ads
-    description: "HEJSAN"
+    description: "Fact table represent the job ads of Arbetsförmedlingen"
     columns:
       - name: employer_f_key
+        description: "Foreign key from dim_employer"
         data_tests:
           - relationships:
               to: ref('dim_employment')
               field: employer_key
 
       - name: job_details_f_key
+        description: "Foreign key from dim_job_details"
         data_tests:
           - relationships:
               to: ref('dim_job_details')
               field: job_details_key
 
       - name: occupation_f_key
+        description: "Foreign key from dim_occupation"
         data_tests:
           - relationships:
               to: ref('dim_occupation')
               field: occupation_key
 
       - name: number_of_vacancies
+        description: "number of vacancies open for each ad"
         data_tests:
           - not_null
 
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: number
       - name: application_deadline
+        description: "Date format of when ads remains open for applications"
         data_tests:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: date
 
       - name: publication_date
+        description: "Date format of when ad was published"
         data_tests:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: date
 
       - name: last_publication_date
+        description: "Date format of when ad will be taken down"
         data_tests:
           - dbt_expectations.expect_column_values_to_be_of_type:
               column_type: date
   - name: dim_employment
+    description: "Dimension table describing the employers from fct_job_ads"
     columns:
       - name: employer_key
+        description: "Primary key. A surrogate key consisting of id, employer_name, employer_workplace, workplace_region"
         data_tests:
           - not_null
           - unique
+      - name: employer_name
+        description: varchar
+      - name: employer_workplace
+        description: varchar
+      - name: employer_org_nr
+        description: varchar
+      - name: workplace_street_address
+        description: varchar
+      - name: workplace_region
+        description: varchar
+      - name: workplace_postcode
+        description: varchar
+      - name: workplace_city
+        description: varchar
+      - name: workplace_country
+        description: varchar
 
   - name: dim_job_details
+    description: "Dimension table describing each job ad in the form of headline, description and must have requirements."
     columns:
       - name: job_details_key
+        description: "Primary key. A surrogate key consisting of id, headline, must_have_skills"
         data_tests:
           - not_null
           - unique
+      - name: description_formatted
+        description: "description but html formatted"
+      - name: must_have_skills
+        description: "skills inputted by job ad creator"
+      - name: must_have_work_exp
+        description: "work experience inputted by job ad creator"
+      - name: must_have_edu_level
+        description: "education level inputted by job ad creator"
+
   - name: dim_occupation
+    description: "Dimension table describing the occupations the job ads concerns"
     columns:
       - name: occupation_key
+        description: "Primary key. A surrogate key consisting of id, occupation"
         data_tests:
           - not_null
           - unique
+      - name: occupation
+        description: "occupation the job ad concern"
+      - name: occupation_group
+        description: "occupation_group, sub group to occupation_field"
+      - name: occupation_field
+        description: "occupation_field, area of the occupation concern"
+  - name: mart_data_it
+    description: "Mart layer serving the Data and IT dashboard"
+  - name: mart_safety
+    description: "Mart layer serving the Safety and Security dashboard"
+  - name: mart_social_work
+    description: "Mart layer serving the Social work dashboard"
