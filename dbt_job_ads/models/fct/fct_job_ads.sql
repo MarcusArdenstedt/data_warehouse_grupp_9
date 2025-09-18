@@ -13,6 +13,6 @@ SELECT
 FROM 
     fct_job_ads AS fja
     
-LEFT JOIN employer AS e ON fja.id = e.id
-LEFT JOIN occupation AS o ON fja.id = o.id
+INNER JOIN employer AS e ON fja.id = e.id
+INNER JOIN occupation AS o ON fja.id = o.id
 ORDER BY publication_date DESC
