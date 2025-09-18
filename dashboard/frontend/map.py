@@ -1,6 +1,6 @@
 from plotly import graph_objects as go 
 from backend.data_processing import read_json_data
-from backend.calculation import get_matches, count_procent
+from backend.calculation import get_matches
 from backend.data_filter import region_vacancies
 import numpy as np
 
