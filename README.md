@@ -9,6 +9,7 @@ A ETL pipeline from job ads API, via dlt extrac, dbt transform and loaded to a S
 Data from job ads in Swedish [Arbetsförmedlingen](https://data.arbetsformedlingen.se/).
 * Data from three different occupational field 
 * Data is fetched with pagination
+* Data is fetcehed from endpoints /snapshot and /stream
 
 ## Extract data
 dlt is used to extracting data from API into Snowflake
